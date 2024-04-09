@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 });
 
 //connected mongoDb to the application.
-database.connect("mongodb+srv://sarthakaryait22:w4YlpaU8AnTuTjGv@result-application.p426il3.mongodb.net/?retryWrites=true&w=majority");
+database.connect("mongodb+srv://sarthakaryait22:w4YlpaU8AnTuTjGv@result-application.le4t5oa.mongodb.net/?retryWrites=true&w=majority&appName=result-application");
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
