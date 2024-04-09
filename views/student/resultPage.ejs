@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Form</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      background: #f3f3f3;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .main {
+      background-color: #929bc1;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 10px 20px;
+      transition: transform 0.2s;
+      width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #232c5b;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome To RMS</h1>
+  <div class="main">
+    <h1>Scorecard</h1>
+    <table style="width:100%">
+      <tr>
+        <th>Roll Number</th>
+        <td>
+          <%=studentresult.rollNo%>
+        </td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>
+          <%=studentresult.name%>
+        </td>
+      </tr>
+      <tr>
+        <th>Class</th>
+        <td>
+          <%=studentresult.class%>
+        </td>
+      </tr>
+      <tr>
+        <th>Date of Birth</th>
+        <td>
+          <%=studentresult.dob%>
+        </td>
+      </tr>
+      <tr>
+        <th>Score</th>
+        <td>
+          <%=studentresult.score%>
+        </td>
+      </tr>
+    </table>
+    <%=message%>
+  </div>
+</body>
+
+</html>

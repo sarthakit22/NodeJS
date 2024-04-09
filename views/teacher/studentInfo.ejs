@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Deatils Page</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        h4 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .tableDiv {
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid black;
+            /* Added border for each cell */
+        }
+
+        .head th {
+            background-color: #423f75;
+            color: #ffffff;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #afc3aa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Result Management System</a>
+            <form class="d-flex">
+                <a class="nav-link" href="/teacher/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </form>
+        </div>
+        </div>
+    </nav>
+
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmationMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2"></div>
+            <% if(typeof success_message !='undefined' ){ %>
+                <div class="alert alert-success col-sm-3" role="success" id="successMessage">
+                    <%= success_message %>
+                </div>
+                <% } %>
+        </div>
+
+        <h4>Students Details</h4>
+
+        <div class="tableDiv">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="head">
+                        <th scope="col">Roll No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Marks</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% students.forEach(element=> { %>
+                        <tr>
+                            <td>
+                                <%= element.rollNo %>
+                            </td>
+                            <td>
+                                <%= element.name %>
+                            </td>
+                            <td>
+                                <%= element.class %>
+                            </td>
+                            <td>
+                                <%= element.dob %>
+                            </td>
+                            <td>
+                                <%= element.score %>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary"
+                                    onclick="location.href='/teacher/getEditDetail/<%= element._id %>'">Edit</button>
+                                <button class="btn btn-danger"
+                                    onclick="showDeleteConfirmation('<%= element.name %>', '<%= element._id %>')">Delete</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <a href="/teacher/addStudent"><button class="btn btn-success">Add Student</button></a>
+
+            <script>
+                function showDeleteConfirmation(name, id) {
+                    document.getElementById('confirmationMessage').innerHTML = `Are you sure you want to delete '${name}' record?`;
+                    document.getElementById('deleteButton').onclick = function () {
+                        location.href = '/teacher/deleteRecord/' + id;
+                    };
+                    $('#deleteConfirmationModal').modal('show');
+                }
+            </script>
+            <script>
+                var successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 900);
+                }
+            </script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

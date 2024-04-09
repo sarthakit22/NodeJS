@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Form</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      background: #f3f3f3;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .main {
+      background-color: #6170b0;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 10px 20px;
+      transition: transform 0.2s;
+      width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #26272c;
+    }
+
+    form {
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      text-align: left;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .navbar {
+      width: 100%;
+    }
+
+    .wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      background-color: #6170b0;
+      width: 100%;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Result Management System</a>
+      <form class="d-flex">
+        <a class="nav-link" href="/teacher/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </form>
+    </div>
+    </div>
+  </nav>
+  <div class="main">
+    <h1>Edit Student Detail</h1>
+    <form action="/teacher/editstudent" method="post">
+      <% if(typeof message !='undefined' ) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= message %>
+        </div>
+        <% } %>
+
+          <label for="name" class="col-form-label">Name</label>
+          <input type="text" value="<%=edit.name%>" name="name" id="name" placeholder="Enter Student Name" required>
+
+          <label for="rollNo" class="col-form-label">Roll Number</label>
+          <input type="text" value="<%=edit.rollNo%>" id="rollNo" name="rollNo" placeholder="Enter student Roll number" disabled="true" required>
+
+          <label for="class" class="col-form-label">Class</label>
+          <input type="text" value="<%=edit.class%>" id="class" name="class" placeholder="Enter student class" required>
+
+          <label for="dob" class="col-form-label">Date of Birth</label>
+          <input type="text" value="<%=edit.dob%>" id="dob" name="dob" placeholder="Enter student DOB" maxlength="10" required>
+
+          <label for="score" class="col-form-label">Score</label>
+          <input type="number" value="<%=edit.score%>" id="score" name="score" placeholder="Enter marks out of 100" min="0" max="100" required>
+
+          <input type="hidden" id="Id" name="Id" value="<%=edit._id%>">
+          <div class="wrap">
+            <button type="submit">Submit</button>
+          </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
